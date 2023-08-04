@@ -10,10 +10,15 @@ app.use(express.static("views"));
 app.get('/contact',(req,res)=>{
     res.sendFile(path.join(__dirname,"views","contact.html"));
 });*/
-
-app.get('*',(req,res)=>{
-    res.send("<h1>404</h1>");
+//custom middleware
+app.get('/contact',token,(req,res)=>{
+    console.log("user looged");
 });
+
+function token(req,res,next){
+       console.log("loading");
+       next();
+}
 
 
 
