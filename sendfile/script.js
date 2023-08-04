@@ -11,8 +11,11 @@ app.get('/contact',(req,res)=>{
     res.sendFile(path.join(__dirname,"views","contact.html"));
 });*/
 //custom middleware
-app.get('/contact',token,(req,res)=>{
+app.get('/contact',token,(req,res,next)=>{
     console.log("user looged");
+    next();
+},(req,res)=>{
+    console.log("final middleware");
 });
 
 function token(req,res,next){
